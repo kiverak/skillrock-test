@@ -1,10 +1,10 @@
-package com.example.skillsrocktest;
+package com.example.skillrocktest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SkillsrockTestApplicationTests {
+class skillrockTestApplicationTests {
 
     @Test
     void contextLoads() {
