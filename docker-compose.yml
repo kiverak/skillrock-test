@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: skillrock-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=skillrock_db
+    depends_on:
+      - postgres
+    networks:
+      - backend
+#    restart: unless-stopped
+
+  postgres:
+    image: postgres:17
+    container_name: skillrock-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: skillrock_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  backend:
+    external: true
